@@ -1,10 +1,10 @@
+
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 
-
-public class Datei extends File{  
+public class Datei extends File {
 
     public Datei(String absolutePath) {
         super(absolutePath);
@@ -12,18 +12,15 @@ public class Datei extends File{
 
     @Override
     public String toString() {
-        if( isDirectory() ){
+        if (isDirectory()) {
             return this.getName();
-        }
-        else{
-            LocalDateTime ldt = 
-                    LocalDateTime.ofEpochSecond(
-                            this.lastModified()/1000, 0, ZoneOffset.UTC);
-           
-            return this.getName() + " "  + this.length() + " KB";
+        } else {
+            LocalDateTime ldt
+                    = LocalDateTime.ofEpochSecond(
+                            this.lastModified() / 1000, 0, ZoneOffset.UTC);
+
+            return this.getName() + " " + this.length() + " KB";
         }
     }
-    
-    
 
 }

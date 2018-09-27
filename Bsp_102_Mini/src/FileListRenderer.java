@@ -15,8 +15,8 @@ public class FileListRenderer implements ListCellRenderer {
         label.setOpaque(true);
 
         if (o instanceof File) {
-            File item = (File) o;
-            label.setForeground(item.getColor());
+            File file = (File) o;
+            label.setForeground(file.getColor());
         }
 
         label.setBackground(isSelected ? Color.lightGray : Color.white);
