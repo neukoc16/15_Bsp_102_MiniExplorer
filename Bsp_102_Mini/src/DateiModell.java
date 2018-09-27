@@ -3,19 +3,19 @@ import java.io.File;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
-public class DateiModell extends AbstractListModel {
+public class DateiModell extends AbstractListModel<File> {
 
-    ArrayList array = new ArrayList<>();
+    private ArrayList<File> files = new ArrayList<>();
     File dir = new File("D:\\");
 
     @Override
     public int getSize() {
-        return array.size();
+        return files.size();
     }
 
     @Override
-    public Object getElementAt(int index) {
-        return array.get(index);
+    public File getElementAt(int index) {
+        return files.get(index);
     }
 
 }
