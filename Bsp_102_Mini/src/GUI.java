@@ -1,8 +1,12 @@
 
 public class GUI extends javax.swing.JFrame {
 
+    private final DateiModell model = new DateiModell();
+
     public GUI() {
         initComponents();
+        lilist.setModel(model);
+        lilist.setCellRenderer(new FileListRenderer());
     }
 
     @SuppressWarnings("unchecked")
@@ -14,11 +18,6 @@ public class GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lilist.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         lilist.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lilistMouseClicked(evt);
@@ -47,7 +46,9 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lilistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lilistMouseClicked
-        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            model.change(lilist.getSelectedIndex());
+        }
     }//GEN-LAST:event_lilistMouseClicked
 
     public static void main(String args[]) {
@@ -68,6 +69,6 @@ public class GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> lilist;
+    private javax.swing.JList<Datei> lilist;
     // End of variables declaration//GEN-END:variables
 }

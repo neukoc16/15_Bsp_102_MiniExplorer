@@ -1,21 +1,29 @@
 
-import java.io.File;
-import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
-public class DateiModell extends AbstractListModel<File> {
+public class DateiModell extends AbstractListModel<Datei> {
 
-    private ArrayList<File> files = new ArrayList<>();
-    File dir = new File("D:\\");
+    private Datei file;
+
+    {
+        file = new Datei(".");
+    }
 
     @Override
     public int getSize() {
-        return files.size();
+        return file.getLowerFiles().size();
     }
 
     @Override
-    public File getElementAt(int index) {
-        return files.get(index);
+    public Datei getElementAt(int index) {
+        return file.getLowerFile(index);
     }
 
+    public void change(int idx) {
+        if (!file.getLowerFile(idx).isDirectory()) {
+            return;
+        }
+        file = file.getLowerFile(idx);
+        fireContentsChanged(this, 0, file.listFiles().length);
+    }
 }
